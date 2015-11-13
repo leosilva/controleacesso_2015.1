@@ -5,11 +5,6 @@
 package controleacesso.persistencia;
 
 
-/*
- * COMENTAR TODAS AS CLASSES ANTES DE COLOCAR NO GITHUB.
- */
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
