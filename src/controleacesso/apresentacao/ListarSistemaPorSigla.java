@@ -88,6 +88,10 @@ public class ListarSistemaPorSigla extends javax.swing.JInternalFrame {
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          try {
+             /*
+             * chama o método listarSistemasPorSigla() do controlador, passando como parâmetro a sigla do sistema digitado em tela. 
+             * Esse método passa a chamada para o DAO, que, por fim, realiza a consulta no banco de dados.
+             */
             Sistema sistema = sistemaController.listarSistemasPorSigla(jTextField1.getText().trim());
             JOptionPane.showMessageDialog(null, "Sigla:" + sistema.getSigla() + "e Nome: " + sistema.getNome(), "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
          } catch (SQLException ex) {
