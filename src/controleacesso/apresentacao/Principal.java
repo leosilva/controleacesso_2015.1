@@ -4,6 +4,14 @@
  */
 package controleacesso.apresentacao;
 
+import controleacesso.relatorios.RelatorioUsuarios;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+
 /**
  * Classe que representa a janela principal do sistema.
  * A partir de um menu, o usuário pode acessar as outras telas do sistema.
@@ -37,6 +45,8 @@ public class Principal extends javax.swing.JFrame {
         jMenuItemNovoSistema = new javax.swing.JMenuItem();
         jMenuItemListarSistema = new javax.swing.JMenuItem();
         jMenuItemListarPorSigla = new javax.swing.JMenuItem();
+        jMenuRelatorios = new javax.swing.JMenu();
+        jMenuItemRelatorioUsuarios = new javax.swing.JMenuItem();
 
         jInternalFrame1.setVisible(true);
 
@@ -99,6 +109,18 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCadastrosBasicos);
 
+        jMenuRelatorios.setText("Relatórios");
+
+        jMenuItemRelatorioUsuarios.setText("Lista de Usuários");
+        jMenuItemRelatorioUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRelatorioUsuariosActionPerformed(evt);
+            }
+        });
+        jMenuRelatorios.add(jMenuItemRelatorioUsuarios);
+
+        jMenuBar1.add(jMenuRelatorios);
+
         setJMenuBar(jMenuBar1);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -149,6 +171,21 @@ public class Principal extends javax.swing.JFrame {
         listarSistema.setVisible(true);
     }//GEN-LAST:event_jMenuItemListarPorSiglaActionPerformed
 
+    private void jMenuItemRelatorioUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioUsuariosActionPerformed
+        try {
+            RelatorioUsuarios.gerarRelatorio();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar o relatório. Tente novamente mais tarde.", "Erro!", JOptionPane.ERROR_MESSAGE);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar o relatório. Tente novamente mais tarde.", "Erro!", JOptionPane.ERROR_MESSAGE);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao gerar o relatório. Tente novamente mais tarde.", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItemRelatorioUsuariosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMenuArquivo;
@@ -158,7 +195,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemListarPorSigla;
     private javax.swing.JMenuItem jMenuItemListarSistema;
     private javax.swing.JMenuItem jMenuItemNovoSistema;
+    private javax.swing.JMenuItem jMenuItemRelatorioUsuarios;
     private javax.swing.JMenuItem jMenuItemSair;
+    private javax.swing.JMenu jMenuRelatorios;
     private javax.swing.JMenu jMenuSistema;
     // End of variables declaration//GEN-END:variables
 }
